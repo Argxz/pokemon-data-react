@@ -4,6 +4,7 @@ export const FETCH_POKEMONS_REQUEST = 'FETCH_POKEMONS_REQUEST';
 export const FETCH_POKEMONS_SUCCESS = 'FETCH_POKEMONS_SUCCESS';
 export const FETCH_POKEMONS_FAILURE = 'FETCH_POKEMONS_FAILURE';
 export const FETCH_POKEMON_DETAIL_SUCCESS = 'FETCH_POKEMON_DETAIL_SUCCESS';
+export const FETCH_POKEMON_DETAIL_FAILURE = 'FETCH_POKEMON_DETAIL_FAILURE';
 
 export const fetchPokemons = () => {
     return async (dispatch) => {
@@ -31,7 +32,7 @@ export const fetchPokemonDetail = (url) => {
             const response = await axios.get(url);
             dispatch({ type: FETCH_POKEMON_DETAIL_SUCCESS, payload: response.data });
         } catch (error) {
-            console.error("Failed to fetch Pokemon detail:", error);
+            dispatch({ type: FETCH_POKEMON_DETAIL_FAILURE, error });
         }
     };
 };
