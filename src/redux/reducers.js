@@ -24,7 +24,7 @@ const pokemonReducer = (state = initialState, action) => {
         case FETCH_POKEMON_DETAIL_SUCCESS:
             return { ...state, pokemonDetail: action.payload };
         case FETCH_POKEMON_DETAIL_FAILURE:
-            return { ...state, pokemonDetail: action.error };
+            return { ...state, error: action.error };
         default:
             return state;
     }
