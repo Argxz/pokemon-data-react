@@ -9,7 +9,7 @@ export const fetchPokemons = () => {
     return async (dispatch) => {
         dispatch({ type: FETCH_POKEMONS_REQUEST });
         try {
-            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=60');
+            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=120');
             const pokemonList = response.data.results;
             const pokemonDetails = await Promise.all(
                 pokemonList.map(async (pokemon) => {
