@@ -61,7 +61,7 @@ const PokemonList = () => {
                                 <span 
                                     key={idx} 
                                     className="pokemon-type" 
-                                    style={{ backgroundColor: typeColors[type.type.name], color: '#fff' }}
+                                    style={{ backgroundColor: typeColors[type.type.name], color: '#000000' }}
                                 >
                                     {type.type.name}
                                 </span>
