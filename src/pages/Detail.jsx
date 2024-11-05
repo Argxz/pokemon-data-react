@@ -14,6 +14,10 @@ const PokemonDetail = () => {
             dispatch(fetchPokemonDetail(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`));
         }
     }, [dispatch, pokemonId]);
+    
+        if (!pokemonDetail) {
+            return <div>Loading...</div>;
+        }
 
     return (
         <div>

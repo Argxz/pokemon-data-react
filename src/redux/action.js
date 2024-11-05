@@ -5,15 +5,12 @@ export const FETCH_POKEMONS_SUCCESS = 'FETCH_POKEMONS_SUCCESS';
 export const FETCH_POKEMONS_FAILURE = 'FETCH_POKEMONS_FAILURE';
 export const FETCH_POKEMON_DETAIL_SUCCESS = 'FETCH_POKEMON_DETAIL_SUCCESS';
 
-// Fungsi untuk mengambil daftar Pokemon
 export const fetchPokemons = () => {
     return async (dispatch) => {
         dispatch({ type: FETCH_POKEMONS_REQUEST });
         try {
-            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=30');
+            const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=60');
             const pokemonList = response.data.results;
-
-            // Fetch detail setiap Pokemon
             const pokemonDetails = await Promise.all(
                 pokemonList.map(async (pokemon) => {
                     const detailResponse = await axios.get(pokemon.url);
@@ -28,7 +25,6 @@ export const fetchPokemons = () => {
     };
 };
 
-// Fungsi untuk mengambil detail individual Pokemon
 export const fetchPokemonDetail = (url) => {
     return async (dispatch) => {
         try {
