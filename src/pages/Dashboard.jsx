@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPokemons } from '../redux/action';
+import { fetchPokemons, FETCH_POKEMONS_FAILURE } from '../redux/action';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css'
 
@@ -29,7 +29,6 @@ const PokemonList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { pokemons, loading, error } = useSelector(state => {
-        console.log("Pokemons:", state.pokemons);
         return state;
     });
 
@@ -41,7 +40,7 @@ const PokemonList = () => {
         if (pokemon.id) {
             navigate(`/detail/${pokemon.id}`);
         } else {
-            console.error('ID Pokémon tidak ditemukan');
+            dispatch(FETCH_POKEMONS_FAILURE('ID Pokémon tidak ditemukan'));
         }
     };
 
@@ -61,8 +60,7 @@ const PokemonList = () => {
                                 <span 
                                     key={idx} 
                                     className="pokemon-type" 
-                                    style={{ backgroundColor: typeColors[type.type.name], color: '#000000' }}
-                                >
+                                    style={{ backgroundColor: typeColors[type.type.name], color: '#000000' }}>
                                     {type.type.name}
                                 </span>
                             ))}
@@ -72,7 +70,6 @@ const PokemonList = () => {
             </div>
         </div>
     );
-    
 };
 
 export default PokemonList;
