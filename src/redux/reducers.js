@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     pokemons: [],
-    pokemonDetail: null,  // Tambahkan ini
+    pokemonDetail: null,
     loading: false,
     error: null
 };
