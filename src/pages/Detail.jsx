@@ -1,10 +1,28 @@
-import React from 'react'
-import '../styles/Detail.css';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPokemonDetail } from '../redux/action';
+import { useParams } from 'react-router-dom';
 
-function Detail() {
-return (
-    <div>Detail</div>
-)
-}
 
-export default Detail
+const PokemonDetail = () => {
+    const { pokemonId } = useParams();
+    const dispatch = useDispatch();
+    const pokemonDetail = useSelector(state => state.pokemonDetail);
+
+    useEffect(() => {
+        if (pokemonId) {
+            dispatch(fetchPokemonDetail(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`));
+        }
+    }, [dispatch, pokemonId]);
+
+    return (
+        <div>
+            <h2>{pokemonDetail.name}</h2>
+            <img src={pokemonDetail.sprites.front_default} alt={pokemonDetail.name} />
+            <p>Height: {pokemonDetail.height}</p>
+            <p>Weight: {pokemonDetail.weight}</p>
+        </div>
+    );
+};
+
+export default PokemonDetail;

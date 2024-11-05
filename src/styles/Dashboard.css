@@ -1,0 +1,15 @@
+/* components/PokemonList.css */
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    padding: 16px;
+}
+
+.pokemon-card {
+    padding: 16px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
