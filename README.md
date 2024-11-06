@@ -6,6 +6,7 @@ Proyek ini mengimplementasikan metode React Redux yaitu redux-thunk
 ## Fitur
 
 - Menampilkan data pokemon berupa card
+- Fitur Search Pokemon (Update!)
 - Menggunakan API [PokeAPI](https://pokeapi.co) untuk mendapatkan data pokemon
 
 Pokedex Data
