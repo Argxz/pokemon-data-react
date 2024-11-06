@@ -5,7 +5,7 @@ Proyek ini adalah aplikasi sederhana untuk menampilkan Pokemon beserta data leng
 ## Fitur
 
 - Menampilkan data pokemon berupa card
-- Menggunakan API [Jikan](https://pokeapi.co) untuk mendapatkan data pokemon
+- Menggunakan API [PokeAPI](https://pokeapi.co) untuk mendapatkan data pokemon
 
 Pokedex Data
 
