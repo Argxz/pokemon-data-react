@@ -1,6 +1,7 @@
 # Aplikasi Pokedex dengan ReactJS
 
 Proyek ini adalah aplikasi sederhana untuk menampilkan Pokemon beserta data lengkapnya menggunakan ReactJS. Data anime diperoleh dari API PokeAPI.
+Proyek ini mengimplementasikan metode React Redux yaitu redux-thunk
 
 ## Fitur
 
