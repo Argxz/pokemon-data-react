@@ -10,7 +10,8 @@ const initialState = {
     pokemons: [],
     pokemonDetail: null,
     loading: false,
-    error: null
+    error: null,
+    searchTerm: '',
 };
 
 const pokemonReducer = (state = initialState, action) => {
@@ -25,9 +26,12 @@ const pokemonReducer = (state = initialState, action) => {
             return { ...state, pokemonDetail: action.payload };
         case FETCH_POKEMON_DETAIL_FAILURE:
             return { ...state, error: action.error };
+        case 'SET_SEARCH_TERM':
+            return { ...state, searchTerm: action.payload };
         default:
             return state;
     }
 };
+
 
 export default pokemonReducer;

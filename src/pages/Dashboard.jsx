@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPokemons, FETCH_POKEMONS_FAILURE } from '../redux/action';
+import { fetchPokemons, FETCH_POKEMONS_FAILURE, setSearchTerm } from '../redux/action';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css'
 
@@ -28,7 +28,7 @@ const typeColors = {
 const PokemonList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { pokemons, loading, error } = useSelector(state => {
+    const { pokemons, loading, error, searchTerm } = useSelector(state => {
         return state;
     });
 
@@ -44,29 +44,49 @@ const PokemonList = () => {
         }
     };
 
+    const handleSearchChange = (e) => {
+        dispatch(setSearchTerm(e.target.value));
+    };
+
+    const filteredPokemons = searchTerm
+        ? pokemons.filter(pokemon =>
+            pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+        : pokemons;
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
     return (
         <div className="pokemon-list-container">
             <h2 className="pokedex-title">Pokedex Data</h2>
+            <input
+                type="text"
+                placeholder="Cari Pokémon"
+                value={searchTerm}
+                onChange={handleSearchChange}
+            />
             <div className="pokemon-list">
-                {pokemons.map((pokemon, index) => (
-                    <div key={index} className="pokemon-card" onClick={() => handleDetailClick(pokemon)}>
-                        <img src={pokemon.sprites.front_default} alt={pokemon.name} className="pokemon-image" />
-                        <p className="pokemon-name">{pokemon.name}</p>
-                        <div className="pokemon-types">
-                            {pokemon.types.map((type, idx) => (
-                                <span 
-                                    key={idx} 
-                                    className="pokemon-type" 
-                                    style={{ backgroundColor: typeColors[type.type.name], color: '#000000' }}>
-                                    {type.type.name}
-                                </span>
-                            ))}
+            {filteredPokemons.length > 0 ? (
+                    filteredPokemons.map((pokemon, index) => (
+                        <div key={index} className="pokemon-card" onClick={() => handleDetailClick(pokemon)}>
+                            <img src={pokemon.sprites.front_default} alt={pokemon.name} className="pokemon-image" />
+                            <p className="pokemon-name">{pokemon.name}</p>
+                            <div className="pokemon-types">
+                                {pokemon.types.map((type, idx) => (
+                                    <span 
+                                        key={idx} 
+                                        className="pokemon-type" 
+                                        style={{ backgroundColor: typeColors[type.type.name], color: '#000000' }}>
+                                        {type.type.name}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p>No Pokémon found</p>
+                )}
             </div>
         </div>
     );

@@ -58,3 +58,18 @@
     -webkit-text-stroke: 2px #000000; 
 }
 
+input[type="text"] {
+    width: 50%; /* Lebar 50% */
+    padding: 10px; /* Ruang dalam */
+    border: 2px solid #ccc; /* Warna border */
+    border-radius: 5px; /* Sudut membulat */
+    font-size: 1em; /* Ukuran font */
+    transition: border-color 0.3s; /* Transisi border */
+    margin: 20px auto; /* Jarak atas dan bawah, dan margin otomatis untuk tengah */
+    display: block; /* Mengatur display menjadi block untuk margin auto berfungsi */
+}
+
+input[type="text"]:focus {
+    border-color: #007bff; /* Warna border saat fokus */
+    outline: none; /* Menghilangkan outline default */
+}
